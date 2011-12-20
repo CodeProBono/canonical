@@ -1,0 +1,12 @@
+This repository contains code for a reference database and manager.
+
+When writing a document that requires referencing academic or technical work,
+one often ends up using incomplete or incorrect references from Google Scholar
+or other similar sources. This project aims to create an open reference
+database structure that can be deployed locally or remotely and synchronised
+with other sources.
+
+This project is a work in progress; do not expect anything to work at this
+stage.
+
+Run `make database` to set up the backend database.
