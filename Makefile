@@ -1,5 +1,9 @@
 # Basic Makefile for building the necessary infrastructure.
 
+# The default target only builds the backend database.
+.PHONY: default
+default: database
+
 # Setup directory paths. You can override these on the command line by passing
 # Make variables (`make SOURCE_ROOT=... ...`) which you may want to do if you
 # are performing an out-of-tree build.
@@ -13,6 +17,7 @@ else
 Q:=@
 endif
 
+# Build the backend database.
 .PHONY: database
 database: ${BUILD_ROOT}/refs.db
 ${BUILD_ROOT}/refs.db: ${SOURCE_ROOT}/refs.sql |sqlite3
@@ -21,6 +26,7 @@ ${BUILD_ROOT}/refs.db: ${SOURCE_ROOT}/refs.sql |sqlite3
 	@# listen to exit commands from within its init script.
 	${Q}echo ".exit" | sqlite3 -init ${SOURCE_ROOT}/refs.sql ${BUILD_ROOT}/refs.db
 
+# Check whether SQLite is installed.
 .PHONY: sqlite3
 sqlite3:
 	@echo " [CHECK] $@"
